@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.rog">
+<head>
+<meta charset="utf-8">
+<title>로그인하기</title>
+</head>
+<body>
+		
+    <div class="login-wrapper">
+        <h2>Login</h2>
+        <form action="@{/register}" method="post"  id=login-form>
+            <input type="text" name="MEMBERS_ID" placeholder="Email">
+            <input type="password" name="MEMBERS_PW" placeholder="Password">
+          
+            <input type="submit" value="Login">
+        </form>
+    </div>

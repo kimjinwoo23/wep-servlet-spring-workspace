@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>상품 상세 페이지</title>
+<link rel="stylesheet" href="/css/product.css">
+</head>
+<body>
+ <form th:action="@{/product}" method="post"  >
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6 d-flex justify-content-center">
+                <img src="1234.png" alt="Product Image" class="product-image">
+            </div>
+            <div class="col-md-6">
+                <div class="product-details">
+                    <h1 class="product-title">디카페인 브라질 원두 커피</h1>
+                    
+                    <div class="dropdown mb-3">
+                        <label for="category">분쇄방법</label>
+                        <select id="category" class="form-select">
+                            <option value="">-- 옵션을 선택하세요 --</option>
+                            <option value="모카포트">모카포트</option>
+                            <option value="에스프레소">에스프레소</option>
+                            <option value="드립커피">드립커피</option>
+                            <option value="더치커피">더치커피</option>
+                        </select>
+                    </div>
+                    <div class="dropdown mb-3">
+                        <label for="subcategory">원두</label>
+                        <select id="subcategory" class="form-select">
+                            <option value="">-- 선택 --</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="price">가격:</label>
+                        <input type="number" id="price" class="form-control" value="9900" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="quantity">수량:</label>
+                        <input type="number" id="quantity" class="form-control quantity-input" value="1" min="1">
+                    </div>
+                    <p id="totalAmount">총 상품금액: 9,900원</p>
+                    
+                    <button id="btn" class="btn btn-primary btn-custom">장바구니 담기</button>
+                    <button id="purchaseBtn" class="btn btn-success btn-custom">구매하기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+   
+    <script>
+$(document).ready(function() {
+    const subcategories = {
+        '모카포트': ['200g'],
+        '에스프레소': ['200g'],
+        '드립커피': ['200g'],
+        '더치커피': ['200g']
+    };
+
+    $("#category").change(function(){
+        const category = $(this).val();
+        const $subcategory = $("#subcategory");
+        $subcategory.empty().append('<option value="">-- 선택 --</option>');
+        if(category){
+            const options = subcategories[category];
+            options.forEach(option => {
+                $subcategory.append(new Option(option, option));
+            });
+        }
+    });
+
+    // 수량 변경 시 총 상품금액 업데이트
+    $("#quantity").change(function() {
+        updateTotalAmount();
+    });
+
+    // 장바구니 담기 버튼 클릭 시 알림
+    $("#btn").click(function() {
+        alert("장바구니에 담겼습니다.");
+    });
+
+    // 구매하기 버튼 클릭 시 알림
+    $("#purchaseBtn").click(function() {
+        alert("구매가 완료되었습니다.");
+    });
+
+    // 초기 총 상품금액 설정
+    function updateTotalAmount() {
+        var price = $("#price").val();
+        var quantity = $("#quantity").val();
+        var totalAmount = price * quantity;
+        $("#totalAmount").text("총 상품금액: " + totalAmount.toLocaleString() + "원");
+    }
+});
+</script>
+
+    
+</body>
+</html>
