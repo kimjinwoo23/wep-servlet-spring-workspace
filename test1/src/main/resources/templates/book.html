@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>책 추가하기</title>
+</head>
+<body>
+<h1>책 추가하기</h1>
+<form action="insertBook" th:action="@{book_isbn, book_title, book_author, book_pubdate}" th:object="${insertBook }" method="??? ">
+    <label for="bookIsbn">ISBN:</label>
+    <input type="text" id="bookIsbn" name="bookIsbn" th:field="*{bookIsbn}" required>
+    <br>
+    <label for="bookTitle">책제목:</label>
+    <input type="text" id="bookTitle" name="bookTitle" th:field="*{bookTitle}" required>
+    <br>
+    <label for="bookAuthor">저자:</label>
+    <input type="text" id="bookAuthor" name="bookAuthor" th:field="*{bookAuthor}" required>
+    <br>
+    <button>책 추가</button>
+</form>
+</body>
+</html>
